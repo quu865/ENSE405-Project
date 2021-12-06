@@ -1,0 +1,850 @@
+ScreenManager:
+    id: screen_manager
+    MenuScreen:
+        id: menu
+        name: 'MenuScreen' 
+        manager: 'screen_manager'
+    DiscussionScreen:
+        id: discussion
+        name: 'DiscussionScreen' 
+        manager: 'screen_manager'
+    DatabaseScreen:
+        id: database
+        name: 'DatabaseScreen' 
+        manager: 'screen_manager' 
+    ResourcesScreen:
+        id: resources
+        name: 'ResourcesScreen' 
+        manager: 'screen_manager'       
+    StatisticsScreen:
+        id: statistics
+        name: 'StatisticsScreen' 
+        manager: 'screen_manager'
+    Stat1Screen:
+        id: stat_one
+        name: 'Stat1Screen'
+        manager: 'screen_manager'
+    Stat2Screen:
+        id: stat_two
+        name: 'Stat2Screen'
+        manager: 'screen_manager'
+    Stat3Screen:
+        id: stat_three
+        name: 'Stat3Screen'
+        manager: 'screen_manager'
+    FastStatsScreen:
+        id: fast-stats
+        name: "FastStatsScreen"
+        manager: 'screen_manager'
+    CaseScreen1:
+        id: case1
+        name: "CaseScreen1"
+        manager: 'screen_manager'
+    CaseScreen2:
+        id: case2
+        name: "CaseScreen2"
+        manager: 'screen_manager'
+    CaseScreen3:
+        id: case3
+        name: "CaseScreen3"
+        manager: 'screen_manager'
+    CaseScreen4:
+        id: case4
+        name: "CaseScreen4"
+        manager: 'screen_manager'
+    S1DScreen:
+        id: S1DScreen
+        name: "S1DScreen"
+        manager: 'screen_manager'
+
+
+<MenuScreen>:       
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Home"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+
+            MDIconButton:
+                icon:"images/settings.png"
+        MDGridLayout:
+            size_hint_y:.75
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            ElementCard:
+                image:"images/database.png"
+                text:"Database"
+                items_count:"Latest Cases"
+                on_press: app.root.current = 'DatabaseScreen'
+
+            ElementCard:
+                image:"images/discussion.png"
+                text:"Discussion"
+                items_count:"Delve a Little Deeper"
+                on_press: app.root.current = 'DiscussionScreen'
+
+            ElementCard:
+                image:"images/stats.jpg"
+                text:"Statistics"
+                items_count:"Latest Information"
+                on_press: app.root.current = 'StatisticsScreen'
+
+            ElementCard:
+                image:"images/resources.png"
+                text:"Resources"
+                items_count:"Get Involved and Learn More"
+                on_press: app.root.current = 'ResourcesScreen'
+
+
+<ElementCard@MDCard>:
+    md_bg_color:155/255,165/255,193/255,1
+    padding:dp(5)
+    spacing:dp(5)
+    
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count       
+        
+<MySwiper@MDSwiperItem>
+    RelativeLayout:
+        MDBoxLayout:
+            adaptive_height: True
+            spacing: "12dp"
+            MDLabel:
+                font_style: "H2"
+                size_hint_y: None
+                height: self.texture_size[1]
+                pos_hint: {"center_y": .5}
+
+
+<DiscussionCard@MDCard>:
+    md_bg_color:155/255,165/255,193/255,1
+    padding:dp(5)
+    spacing:dp(5)
+    
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        orientation:'vertical'
+        MDLabel:
+            halign:"left"
+            text:root.text
+            font_style:"H6"
+        MDLabel:
+            halign:"left"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"left"
+            text:root.items_count
+
+<DiscussionScreen>:
+    name: 'discussion'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Discussion"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            GridLayout:
+                cols: 1
+                size_hint_y: .75
+                padding:[dp(15),dp(15),dp(15),dp(35)]
+                spacing:dp(15)
+                DiscussionCard:
+                    image:"images/stat1.png"
+                    items_count:"MC/PUR Missing Adult Subjects by Probable Cause for 2020"
+                    on_press: app.root.current = 'S1DScreen'
+                DiscussionCard:
+                    image:"images/stat2.png"
+                    items_count:"MC/PUR Missing Adult Subjects by Sex for 2020"
+                    on_press: app.root.current = 'S1DScreen'
+                DiscussionCard:
+                    image:"images/stat3.png"
+                    items_count:"MC/PUR Missing Adult Subjects in Canada by Province for 2020"
+                    on_press: app.root.current = 'S1DScreen'
+
+<S1DScreen>:
+    name: 'S1DScreen'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Database"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            GridLayout:
+                adaptive_size:True
+                spacing:dp(10)
+                cols: 2
+                MDTextField:
+                    hint_text: "Enter Question/Comment Here"
+                    size_hint_x: None
+                    multiline: False
+                MDTextButton:
+                    text: "Send        "
+                Image:
+                    source: "images/SD1.png"
+                    
+
+<DatabaseScreen>:
+    name: 'database'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Database"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDGridLayout:
+                cols: 3
+                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                row_force_default: True
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(4)
+                SmartTileWithLabel:
+                    source: "images/data1.png"
+                    text: "Bob"
+                    on_press: app.root.current = 'CaseScreen1'
+                SmartTileWithLabel:
+                    source: "images/data2.jpg"
+                    text: "Stan"
+                    on_press: app.root.current = 'CaseScreen2'
+                SmartTileWithLabel:
+                    source: "images/data3.jpg"
+                    text: "Louise"
+                    on_press: app.root.current = 'CaseScreen3'
+                SmartTileWithLabel:
+                    source: "images/data4.jpg"
+                    text: "Leo"
+                    on_press: app.root.current = 'CaseScreen4'
+
+
+<CaseScreen1>:
+    name: 'case1'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Database"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDBoxLayout:
+                    SmartTileWithLabel:
+                        source: "images/data1.png"
+                        text: "Bob"
+                    MDList:
+                        OneLineListItem:
+                            text: "Full Name: Bob Newport"
+                        OneLineListItem:
+                            text: "Age: 25"
+                        OneLineListItem:
+                            text: "Date of Disappearance: 13/11/2021"
+                        OneLineListItem:
+                            text: "Last Seen: A.E. Wilson Park, Regina, SK"
+                        OneLineListItem:
+                            text: "If you have any info, call 306-777-6500"
+                MDRaisedButton:
+                    text: "Leave a tip"
+                    md_bg_color: 137/255, 207/255, 240/255, 1
+                    on_press:
+                        import webbrowser
+                        webbrowser.open('https://reginapolice.ca/2021/10/can-you-identify-this-individual-94/')
+
+<CaseScreen2>:
+    name: 'case2'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Database"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDBoxLayout:
+                    SmartTileWithLabel:
+                        source: "images/data2.jpg"
+                        text: "Stan"
+                    MDList:
+                        OneLineListItem:
+                            text: "Full Name: Stan Newport"
+                        OneLineListItem:
+                            text: "Age: 22"
+                        OneLineListItem:
+                            text: "Date of Disappearance: 13/11/2021"
+                        OneLineListItem:
+                            text: "Last Seen: A.E. Wilson Park, Regina, SK"
+                        OneLineListItem:
+                            text: "If you have any info, call 306-777-6500"
+                MDRaisedButton:
+                    text: "Leave a tip"
+                    md_bg_color: 137/255, 207/255, 240/255, 1
+                    on_press:
+                        import webbrowser
+                        webbrowser.open('https://reginapolice.ca/2021/10/can-you-identify-this-individual-94/')
+
+<CaseScreen3>:
+    name: 'case3'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Database"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDBoxLayout:
+                    SmartTileWithLabel:
+                        source: "images/data3.jpg"
+                        text: "Louise"
+                    MDList:
+                        OneLineListItem:
+                            text: "Full Name: Louise Newport"
+                        OneLineListItem:
+                            text: "Age: 28"
+                        OneLineListItem:
+                            text: "Date of Disappearance: 13/11/2021"
+                        OneLineListItem:
+                            text: "Last Seen: A.E. Wilson Park, Regina, SK"
+                        OneLineListItem:
+                            text: "If you have any info, call 306-777-6500"
+                MDRaisedButton:
+                    text: "Leave a tip"
+                    md_bg_color: 137/255, 207/255, 240/255, 1
+                    on_press:
+                        import webbrowser
+                        webbrowser.open('https://reginapolice.ca/2021/10/can-you-identify-this-individual-94/')
+
+<CaseScreen4>:
+    name: 'case4'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Database"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDBoxLayout:
+                    SmartTileWithLabel:
+                        source: "images/data4.jpg"
+                        text: "Leo"
+                    MDList:
+                        OneLineListItem:
+                            text: "Full Name: Leo Newport"
+                        OneLineListItem:
+                            text: "Age: 30"
+                        OneLineListItem:
+                            text: "Date of Disappearance: 13/11/2021"
+                        OneLineListItem:
+                            text: "Last Seen: A.E. Wilson Park, Regina, SK"
+                        OneLineListItem:
+                            text: "If you have any info, call 306-777-6500"
+                MDRaisedButton:
+                    text: "Leave a tip"
+                    md_bg_color: 137/255, 207/255, 240/255, 1         
+                    on_press:
+                        import webbrowser
+                        webbrowser.open('https://reginapolice.ca/2021/10/can-you-identify-this-individual-94/')                   
+
+<ResourcesScreen>:
+    name: 'resources'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Resources"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDList:
+                padding: '15dp'
+                MDRoundFlatButton:
+                    md_bg_color:155/255,165/255,193/255,1
+                    text: "Missing Persons Database - Regina Police"
+                    font_style: 'H5'
+                    on_press: 
+                        import webbrowser
+                        webbrowser.open('https://reginapolice.ca/category/news/missing-persons/')
+                MDRoundFlatButton:
+                    text: "Statistics - Canada's Missing"
+                    font_style: 'H5'
+                    on_press: 
+                        import webbrowser
+                        webbrowser.open('https://www.canadasmissing.ca/index-eng.htm')
+                MDRoundFlatButton:
+                    md_bg_color:155/255,165/255,193/255,1
+                    text: "Volunteer - Child Find Saskatchewan"
+                    font_style: 'H5'
+                    on_press: 
+                        import webbrowser
+                        webbrowser.open('https://www.childfind.sk.ca/volunteer/')
+                MDRoundFlatButton:
+                    text: "Missing Persons Checklist"
+                    font_style: 'H5'
+                    on_press: 
+                        import webbrowser
+                        webbrowser.open('https://missingpersonsinformation.ca/docs/Missing%20Persons%20Checklist_CCIMA.pdf')
+
+<StatisticsScreen>:
+    name: 'statistics'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Statistics"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDGridLayout:
+                cols: 2
+                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                row_force_default: True
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(4)
+                SmartTileWithLabel:
+                    source: "images/fast-stats.jpg"
+                    text: "Quick Stats"
+                    on_press: app.root.current = 'FastStatsScreen'
+                SmartTileWithLabel:
+                    source: "images/stat1.png"
+                    text: "MC/PUR Missing Adult Subjects by Probable Cause for 2020"
+                    on_press: app.root.current = 'Stat1Screen'
+                SmartTileWithLabel:
+                    source: "images/stat2.png"
+                    text: "MC/PUR Missing Adult Subjects by Sex for 2020"
+                    on_press: app.root.current = 'Stat2Screen'
+                SmartTileWithLabel:
+                    source: "images/stat3.png"
+                    text: "MC/PUR Missing Adult Subjects in Canada by Province for 2020"
+                    on_press: app.root.current = 'Stat3Screen'
+                SmartTileWithLabel:
+                    source: "images/stat1.png"
+                    text: "MC/PUR missing adult subjects by probable cause for 2020"
+                SmartTileWithLabel:
+                    source: "images/stat2.png"
+                    text: "MC/PUR Missing Adult Subjects by Sex for 2020"
+                    tile_text_color: app.theme_cls.accent_color
+
+<Stat1Screen>:
+    name: 'stat_one'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"MC/PUR Missing Adult Subjects by Probable Cause for 2020"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDGridLayout:
+                cols: 1
+                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(4)
+                SmartTileWithLabel:
+                    source: "images/stat1.png"
+                    text: "MC/PUR missing adult subjects by probable cause for 2020"
+                MDLabel:
+                    size_hint_y: 10
+                    text: "The graph above compares the number of adult subjects missing in Saskatchewan in terms of probable cause during the 2020 year. The graph does not take gender into account, and does not show how many of these people were found."
+        MDTextButton:
+            text: "https://www.canadasmissing.ca/pubs/2020/index-eng.htm"
+            halign: 'left'
+            text_color: 135/255, 206/255, 235/255, 1
+            on_press:
+                import webbrowser
+                webbrowser.open('https://www.canadasmissing.ca/pubs/2020/index-eng.htm')
+
+<Stat2Screen>:
+    name: 'stat_two'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"MC/PUR Missing Adult Subjects by Sex in Saskatchewan for 2020"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDGridLayout:
+                cols: 1
+                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                row_force_default: True
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(4)
+                SmartTileWithLabel:
+                    source: "images/stat2.png"
+                    text: "MC/PUR missing adult subjects by sex in Saskatchewan for 2020"
+                MDLabel:
+                    pos_hint: {"x": 0, "top":1}
+                    text: "The graph above compares the number of adult subjects missing in Saskatchewan in terms of gender as recorded by CanadaMissing.ca. This data covers the year 2020 does not show how many people were found."
+        MDTextButton:
+            text: "https://www.canadasmissing.ca/pubs/2020/index-eng.htm"
+            halign: 'left'
+            text_color: 135/255, 206/255, 235/255, 1
+            on_press:
+                import webbrowser
+                webbrowser.open('https://www.canadasmissing.ca/pubs/2020/index-eng.htm') 
+
+<Stat3Screen>:
+    name: 'stat_three'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"MC/PUR Missing Adult Subjects by Province for 2020"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDGridLayout:
+                cols: 1
+                row_default_height: (self.width - self.cols*self.spacing[0]) / self.cols
+                row_force_default: True
+                adaptive_height: True
+                padding: dp(4), dp(4)
+                spacing: dp(4)
+                SmartTileWithLabel:
+                    source: "images/stat3.png"
+                    text: "MC/PUR missing adult subjects by sex for 2020"
+                MDLabel:
+                    text: "The graph above compares the number of adult subjects missing in Canada by province as recorded by CanadaMissing.ca. This data covers the year 2020 does not show how many people were found."
+        MDTextButton:
+            text: "https://www.canadasmissing.ca/pubs/2020/index-eng.htm"
+            halign: 'left'
+            text_color: 135/255, 206/255, 235/255, 1
+            on_press:
+                import webbrowser
+                webbrowser.open('https://www.canadasmissing.ca/pubs/2020/index-eng.htm')        
+
+<FastStatsScreen>:
+    name: 'fast-stats'
+    MDBoxLayout:
+        md_bg_color:5/255,40/255,81/255,1
+        orientation:'vertical'
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                orientation:"vertical"
+                MDLabel:
+                    text:"FIND"
+                    font_style:"H2"
+                MDBoxLayout:
+                    adaptive_size:True
+                    spacing:dp(10)
+                    MDLabel:
+                        text:"Fast Stats"
+                        text_size:None,None
+                        adaptive_width:True
+                    MDIcon:
+                        icon:'chevron-down'
+            MDFloatingActionButton:
+                icon: "images/discussion.png"
+                md_bg_color: app.theme_cls.primary_color
+                on_press: app.root.current = 'DiscussionScreen'
+            MDIconButton:
+                icon:"images/home.png"
+                on_press: app.root.current = 'MenuScreen'
+        ScrollView:
+            MDSwiper:
+                on_swipe: self.get_current_item().ids.icon.shake()
+                MySwiper:
+                    MDLabel:
+                        text: '57% of missing adult reports in 2020 involved males'
+                        font_style: "H4"
+                        background_color: 155/255,165/255,193/255,1
+                MySwiper:
+                    MDLabel:
+                        text: '65% of adults who wandered off in 2020 were males'
+                        font_style: "H4"
+                MySwiper:
+                    MDLabel:
+                        text: '61% of missing adult reports in 2020 were removed within 24 hours, while 89% were removed within a week '
+                        font_style: "H4"
+                MySwiper:
+                    MDLabel:
+                        text: 'British Columbia had the highest number of adult runaway subjects'
+                        font_style: "H4"
+
+
+                
+
+
